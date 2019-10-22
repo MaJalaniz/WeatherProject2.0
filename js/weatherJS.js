@@ -4,9 +4,23 @@ window.addEventListener('load', () => {
 
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position =>{
-            console.log(position);
+            long = position.coords.longitude;
+            lat = position.coords.latitude;
+
+            const proxy = 'https://cors-anywhere.herokuapp.com/';
+           
+
+            fetch(apiKey)
+        .then(data => {
+            return data.json();
+        })
+        .then(data => {
+            console.log(data);
+            const { temperature, summary } = data.currently;
+        })
         });
-    }else{
-        h1.textContent = "This is not working properly"
+        
     }
+
+
 });
